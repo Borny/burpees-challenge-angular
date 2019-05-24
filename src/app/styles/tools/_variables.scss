@@ -1,0 +1,59 @@
+//////////
+// FONTS
+//////////
+// Roboto
+@import url(//fonts.googleapis.com/css?family=Roboto:700,400,500,300);
+$fontRoboto: 'Roboto',
+Arial,
+sans-serif,
+serif,
+Helvetica;
+// Base 02
+@font-face {
+    font-family: 'Base02';
+    src: url('./assets/fonts/Base02.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+////////////////
+// FONT WEIGHT
+////////////////
+
+$fontWeightLight: 300;
+$fontWeightBase: 400;
+$fontWeightBold: 500;
+$fontWeightBolder: 700;
+
+///////////
+// COLORS
+///////////
+$black: #000;
+$white: #FFF;
+
+$gray-light: #787878;
+
+$blue-light2: #52CEE2;
+$blue-green: #06b2c1;
+$blue-dark4: #05587C;
+$electricViolet : #5A0FF5;
+
+$redRibbon: #F50F30;
+
+/////////////////////
+// Z-index
+/////////////////////
+$zindex-modal-btnOpen: 100;
+$zindex-modal: 150;
+$zindex-modal-overlay: 200;
+$zindex-modal-dialog: 250;
+$zindex-header: 50;
+
+/////////////////
+// SCREEN SIZES
+/////////////////
+
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;

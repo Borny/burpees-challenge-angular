@@ -1,0 +1,51 @@
+<div *ngIf="modalOpen" class="modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2>{{modalRole === creation ? 'Enter a new set' : 'Edit set'}}</h2>
+    </div>
+    <form #cardForm="ngForm">
+      <div class="modal-body">
+        <!-- Day -->
+        <div class="modal--input-block">
+          <input name="day" #day="ngModel" placeholder="Enter the day number" type="text"
+            class="modal--input" required [(ngModel)]="card.day">
+          <span class="underline"></span>
+          <span class="anim-underline"></span>
+        </div>
+        <span [hidden]="day.valid || day.pristine" class="modal-input--error">Day number is required</span>
+        <!-- Time -->
+        <div class="modal--input-block">
+          <input name="time" #time="ngModel" placeholder="Enter the time" type="text" class="modal--input"
+            required  [(ngModel)]="card.time">
+          <span class="underline"></span>
+          <span class="anim-underline"></span>
+        </div>
+        <span [hidden]="time.valid || time.pristine" class="modal-input--error">Day number is required</span>
+        
+        <!-- Set -->
+        <div class="modal--input-block">
+          <input name="set" #set="ngModel" placeholder="Enter the set" type="text" class="modal--input"
+            required  [(ngModel)]="card.set">
+          <span class="underline"></span>
+          <span class="anim-underline"></span>
+        </div>
+        <span [hidden]="set.valid || set.pristine" class="modal-input--error">Day number is required</span>
+
+      </div>
+
+      <div class="modal-footer">
+        <div class="btn-create">
+          <button [disabled]="!cardForm.form.valid" type="submit" (click)="createCard(day.value, time.value, set.value) ; cardForm.reset()"
+            class="btn_modal_footer btn-modal_close" id="create">
+            Create
+          </button>
+        </div>
+        <div class="">
+          <button type="button" class="btn_modal_footer btn-modal_close" (click)="closeModal()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+header {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	background: $blue-light2;
+    align-content: stretch;
+    p{
+        color: $black;
+        font-family: Base02, $fontRoboto;
+    }
+}

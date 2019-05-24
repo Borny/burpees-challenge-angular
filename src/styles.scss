@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+// TOOLS
+@import './app/styles/tools/variables';
+@import './app/styles/tools/placeholder';
+
+// BASE
+@import './app/styles/base/reboot';
+@import './app/styles/base/base';
+
+// Components
+@import './app/styles/components/header';
+@import './app/styles/components/main';
+@import './app/styles/components/card';
+@import './app/styles/components/modal';
+
+// Elements
+@import './app/styles/elements/buttons';

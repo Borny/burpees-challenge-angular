@@ -1,0 +1,52 @@
+main {
+    max-width: $screen-lg;
+    margin: auto;
+}
+
+.cards-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card {
+    width: 25%;
+    padding: 1rem;
+}
+
+.card-content {
+    display: flex;
+    flex-flow: column;
+    background: $blue-green;
+    border-radius: 4px;
+}
+
+.card-header {
+    border-radius: 4px 4px 0 0;
+    background: darken($blue-green, 10%);
+    padding: 0.5rem;
+    color: $white;
+    text-align: center;
+}
+
+.card-main {
+    text-align: center;
+    padding: 0.5rem;
+    color: $white;
+    &:last-child {
+        border-radius: 0 0 4px 4px;
+    }
+}
+
+// Open modal button
+.btn-open-modal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: $blue-dark4;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    padding: 0.5rem;
+    fill: white;
+    cursor: pointer;
+}

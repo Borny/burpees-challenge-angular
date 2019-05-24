@@ -1,0 +1,130 @@
+////////////////////////////////
+// BOX SIZING FOR ALL ELEMENTS
+////////////////////////////////
+
+* {
+    box-sizing: border-box;
+}
+
+// We're using "em" as font-size/margin/padding unit
+// It is set on the body font-size and varies depending on screen sizes
+html {
+    font-size: 100%;
+    min-height: 100%;
+}
+
+body {
+    height: 100%;
+    font-size: 0.8em;
+    @media (min-width: $screen-xs) {
+        font-size: 0.9em;
+    }
+    @media (min-width: $screen-sm) {
+        font-size: 1em;
+    }
+}
+
+#root {
+    height: 100vh;
+}
+
+//////////
+// RESET
+//////////
+
+div,
+section,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+a,
+label,
+button,
+input {
+    margin: 0;
+    padding: 0;
+    font-weight: $fontWeightBase;
+    font-family: $fontRoboto;
+}
+
+a {
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+li {
+    list-style: none;
+}
+
+///////////
+// BUTTON
+///////////
+button,
+.btn{
+  outline: none;
+  border: none;
+}
+
+// CANCELS OUTLINE INPUT
+input,
+button,
+select,
+textarea {
+    &:focus {
+        outline: none;
+    }
+}
+
+//////////
+// LINKS
+//////////
+.links {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 0.3em;
+    border: 1px solid $black;
+    color: $black;
+}
+///////////
+// CLASSES
+///////////
+.hidden {
+    display: none !important;
+}
+
+//////////
+// HACKS
+//////////
+
+//CANCELS SAFARI INPUT ICON
+input::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+}
+
+input:focus::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+}
+
+//CANCELS INTERNET EXPLORER AND EDGE CLEAR INPUT ICON
+input::-ms-clear {
+    display: none;
+}
+
+//CANCELS THE YELLOW BACKGROUND COLOR ON INPUT AUTOFILL ON CHROME
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
