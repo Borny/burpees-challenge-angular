@@ -1,7 +1,7 @@
 <div *ngIf="modalOpen" class="modal" aria-hidden="true">
+  <div class="modal-background" (click)="closeModal(); cardForm.reset()"></div>
   <div class="modal-dialog">
     <div class="modal-header">
-
       <h2>{{modalRole === 'creation' ? 'Enter a new set' : 'Edit the set'}}</h2>
     </div>
     <form #cardForm="ngForm">
