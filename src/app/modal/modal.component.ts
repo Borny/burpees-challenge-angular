@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Card } from '../../assets/models/card.model';
-import {CardItem} from '../classes/card-item';
+import { CardItem } from '../classes/card-item';
 
 @Component({
   selector: 'app-modal',
@@ -18,13 +18,15 @@ export class ModalComponent implements OnInit {
 
   @Output() isModalClose: EventEmitter<any> = new EventEmitter();
   @Output() cardInfo: EventEmitter<any> = new EventEmitter();
+  @Output() cardInfoEdited: EventEmitter<any> = new EventEmitter();
 
   public modalCreation: boolean;
-  public errorDisplay: boolean = false;
 
-  public create: Card;
+  private cardCreated: Card;
+  private editedInfo: Card;
+
   public card: Card = new CardItem(
-    0, '',''
+    0, '', ''
   );
 
   //////////////////////////////////
@@ -35,7 +37,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.modalOpen = false;
-
+    this.modalRole = 'creation';
   }
 
   //////////////////////////////////
@@ -49,11 +51,24 @@ export class ModalComponent implements OnInit {
    */
   public createCard(day, time, set) {
     const cardInfoParameters = [day, time, set];
-    this.create = this.mapCard(cardInfoParameters);
-    this.cardInfo.emit(this.create);
+    this.cardCreated = this.mapCard(cardInfoParameters);
+    this.cardInfo.emit(this.cardCreated);
     this.closeModal();
   }
 
+  //////////////////////////////////
+  //          EDIT THE CARD
+  //////////////////////////////////
+  public editCard(day, time, set) {
+    const cardInfoParameters = [day, time, set];
+    this.editedInfo = this.mapCardEdited(cardInfoParameters);
+    this.cardInfoEdited.emit(this.editedInfo);
+    this.closeModal();
+  }
+
+  //////////////////////////////////
+  //          MAP CARD
+  //////////////////////////////////
   /**
    * Mapping the values retrieved from the modal based on a Card model
    * @param cardInfo - values from the modal inputs
@@ -67,12 +82,24 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  /**
+   * Mapping the values retrieved from the modal based on a Card model
+   * @param cardInfoEdited - values from the modal inputs
+   * @returns an array with the mapped card info
+   */
+  private mapCardEdited(cardInfoEdited) {
+    return {
+      id: cardInfoEdited[0],
+      time: cardInfoEdited[1],
+      set: cardInfoEdited[2]
+    }
+  }
+
   //////////////////////////////////
   //          CLOSES THE MODAL
   //////////////////////////////////
   public closeModal() {
-    this.modalOpen = false;
-    this.isModalClose.emit(this.modalOpen)
+    this.isModalClose.emit(this.modalOpen = false)
   }
 
 }

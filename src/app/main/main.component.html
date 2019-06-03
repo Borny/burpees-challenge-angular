@@ -1,10 +1,11 @@
 <main>
   <ul class="cards-container">
-    <li class="card" *ngFor="let card of cards">
+    <li class="card" id="{{card.id}}" *ngFor="let card of cards">
       <div class="card-content">
         <div class="card-header">Day {{card.id}}</div>
         <div class="card-main">{{card.time}}</div>
         <div class="card-main">{{card.set}}</div>
+        <button type="button" (click)="openEditModal($event)">Edit</button>
       </div>
     </li>
   </ul>

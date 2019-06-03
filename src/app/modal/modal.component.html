@@ -1,47 +1,62 @@
 <div *ngIf="modalOpen" class="modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-header">
-      <h2>{{modalRole === creation ? 'Enter a new set' : 'Edit set'}}</h2>
+
+      <h2>{{modalRole === 'creation' ? 'Enter a new set' : 'Edit the set'}}</h2>
     </div>
     <form #cardForm="ngForm">
       <div class="modal-body">
+
+        <!-- BODY -->
         <!-- Day -->
-        <div class="modal--input-block">
-          <input name="day" #day="ngModel" placeholder="Enter the day number" type="text"
-            class="modal--input" required [(ngModel)]="card.day">
+        <div [ngClass]="{'hidden' : modalRole !== 'creation'}" class="modal--input-block">
+          <input name="day" #day="ngModel" placeholder="Enter the day number" type="text" class="modal--input" required
+            [(ngModel)]="card.day">
           <span class="underline"></span>
           <span class="anim-underline"></span>
         </div>
-        <span [hidden]="day.valid || day.pristine" class="modal-input--error">Day number is required</span>
+        <span [ngClass]="{'hidden' : day.valid || day.pristine}" class="modal-input--error">Day number is
+          required
+        </span>
+
         <!-- Time -->
         <div class="modal--input-block">
-          <input name="time" #time="ngModel" placeholder="Enter the time" type="text" class="modal--input"
-            required  [(ngModel)]="card.time">
+          <input name="time" #time="ngModel" placeholder="Enter the time" type="text" class="modal--input" required
+            [(ngModel)]="card.time">
           <span class="underline"></span>
           <span class="anim-underline"></span>
         </div>
-        <span [hidden]="time.valid || time.pristine" class="modal-input--error">Day number is required</span>
-        
+        <span [ngClass]="{'hidden' : time.valid || time.pristine}" class="modal-input--error">Time is required</span>
+
         <!-- Set -->
         <div class="modal--input-block">
-          <input name="set" #set="ngModel" placeholder="Enter the set" type="text" class="modal--input"
-            required  [(ngModel)]="card.set">
+          <input name="set" #set="ngModel" placeholder="Enter the set" type="text" class="modal--input" required
+            [(ngModel)]="card.set">
           <span class="underline"></span>
           <span class="anim-underline"></span>
         </div>
-        <span [hidden]="set.valid || set.pristine" class="modal-input--error">Day number is required</span>
-
+        <span [ngClass]="{'hidden' : set.valid || set.pristine}" class="modal-input--error">Set is required</span>
       </div>
 
+      <!-- FOOTER -->
       <div class="modal-footer">
-        <div class="btn-create">
-          <button [disabled]="!cardForm.form.valid" type="submit" (click)="createCard(day.value, time.value, set.value) ; cardForm.reset()"
+        <div>
+          <!-- Create -->
+          <button *ngIf="modalRole === 'creation'" [disabled]="!cardForm.form.valid" type="submit"
+            (click)="createCard(day.value, time.value, set.value) ; cardForm.reset()"
             class="btn_modal_footer btn-modal_close" id="create">
             Create
           </button>
+          <!-- Edit -->
+          <button *ngIf="modalRole !== 'creation'" [disabled]="!time.valid || !set.valid" type="submit"
+            (click)="editCard(day.value, time.value, set.value) ; cardForm.reset()"
+            class="btn_modal_footer btn-modal_close" id="edit">
+            Edit
+          </button>
         </div>
-        <div class="">
-          <button type="button" class="btn_modal_footer btn-modal_close" (click)="closeModal()">
+        <!-- Close -->
+        <div>
+          <button type="button" class="btn_modal_footer btn-modal_close" (click)="closeModal(); cardForm.reset()">
             Cancel
           </button>
         </div>

@@ -16,13 +16,13 @@ main {
 .card-content {
     display: flex;
     flex-flow: column;
-    background: $blue-green;
+    background: $cerulean;
     border-radius: 4px;
 }
 
 .card-header {
     border-radius: 4px 4px 0 0;
-    background: darken($blue-green, 10%);
+    background: darken($cerulean, 10%);
     padding: 0.5rem;
     color: $white;
     text-align: center;

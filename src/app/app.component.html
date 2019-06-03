@@ -1,3 +1,4 @@
 <app-header></app-header>
-<app-main  [cardInfo]="cardInfo" (isModalOpen)="displayModal($event)"></app-main>
-<app-modal [modalRole]="modalRole" [modalOpen]="modalOpen" (isModalClose)="closeModal($event)" (cardInfo)="getsCardInfo($event)"></app-modal>
+<app-main [cardInfo]="cardInfo" [cardInfoEdited]="cardInfoEdited" (isModalOpen)="displayModal($event)"></app-main>
+<app-modal [modalRole]="modalRole" [modalOpen]="modalOpen" (isModalClose)="closeModal($event)"
+    (cardInfo)="getsCardInfo($event)" (cardInfoEdited)="getsCardInfoEdited($event)"></app-modal>
