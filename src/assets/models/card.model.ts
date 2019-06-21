@@ -1,5 +1,6 @@
 export interface Card {
-    id: number,
+    day: string,
     time: string,
-    set: string
+    set: string,
+    id?: string
 }

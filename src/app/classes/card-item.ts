@@ -1,6 +1,6 @@
 export class CardItem {
     constructor(
-        public id: number,
+        public day: string,
         public time: string,
         public set: string
     ) { }

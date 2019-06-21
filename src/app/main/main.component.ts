@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, OnChanges, } from '@angular/core';
 import { Card } from '../../assets/models/card.model';
+import { CardService } from '../services/card.service';
 
 @Component({
   selector: 'app-main',
@@ -22,6 +23,7 @@ export class MainComponent implements OnInit, OnChanges {
   private readonly CREATION = 'creation';
   private readonly EDITION = 'edition';
   private editedCard: Card;
+  private infoEdited: Card;
 
   /** Inits the cards */
   public cards: Card[] = [];
@@ -35,18 +37,20 @@ export class MainComponent implements OnInit, OnChanges {
   //////////////////////////////////
   //          CONSTRUCTOR
   //////////////////////////////////
-  constructor() { }
+  constructor(private cardService: CardService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['cardInfo'] && !changes['cardInfo'].isFirstChange()) {
-      this.cardInfo;
-      this.createCard(this.cardInfo);
+      this.cardInfo
+      this.createCard(this.cardInfo)
     } else if (changes['cardInfoEdited'] && !changes['cardInfoEdited'].isFirstChange()) {
-      this.editCard(this.cardInfoEdited)
+      this.editCard(this.cardInfoEdited);
+      this.cardService.editCard(this.infoEdited);
     }
   }
 
   ngOnInit() {
+    this.displayCards();
   }
 
   //////////////////////////////////
@@ -60,7 +64,8 @@ export class MainComponent implements OnInit, OnChanges {
   //          CREATE CARD
   //////////////////////////////////
   private createCard(cardInfo) {
-    this.cards.push(cardInfo)
+    this.cards.push(cardInfo);
+    this.cardService.createCard(cardInfo);
   }
 
   //////////////////////////////////
@@ -74,10 +79,22 @@ export class MainComponent implements OnInit, OnChanges {
   private editCard(infoEdited) {
     this.cards.map(card => {
       if (card.id.toString() === this.editedCard.id.toString()) {
+        card.id = this.editedCard.id;
         card.time = infoEdited.time;
         card.set = infoEdited.set;
+        this.infoEdited = card;
       }
     })
+  }
+
+  //////////////////////////////////
+  //          DISPLAY CARD
+  //////////////////////////////////
+  /**
+   * displays the cards gotten from the card service
+   */
+  private displayCards() {
+    return this.cardService.getCards().then((data: Card[]) => { this.cards = data })
   }
 
 }

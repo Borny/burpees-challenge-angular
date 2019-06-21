@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Card } from '../../assets/models/card.model';
 import { CardItem } from '../classes/card-item';
 
@@ -26,7 +25,7 @@ export class ModalComponent implements OnInit {
   private editedInfo: Card;
 
   public card: Card = new CardItem(
-    0, '', ''
+    '', '', ''
   );
 
   //////////////////////////////////
@@ -76,7 +75,7 @@ export class ModalComponent implements OnInit {
    */
   private mapCard(cardInfo) {
     return {
-      id: cardInfo[0],
+      day: cardInfo[0],
       time: cardInfo[1],
       set: cardInfo[2]
     }
@@ -89,7 +88,7 @@ export class ModalComponent implements OnInit {
    */
   private mapCardEdited(cardInfoEdited) {
     return {
-      id: cardInfoEdited[0],
+      day: cardInfoEdited[0],
       time: cardInfoEdited[1],
       set: cardInfoEdited[2]
     }
